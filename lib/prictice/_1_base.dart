@@ -48,7 +48,7 @@ void main() {
     print(2);
   }
 
-  // 集合,通过[]创建的即可容量可变化
+  // 集合,通过【】创建的即可容量可变化
   var list = ["a", "b"];
   var list1 = <int>[1, 2, 4];
   var list2 = [];

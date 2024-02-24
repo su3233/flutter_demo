@@ -1,3 +1,7 @@
+
+import 'bean/Animal.dart';
+import 'bean/Rect.dart';
+
 main() {
   /**
    * 类，构造函数，命名
@@ -7,7 +11,19 @@ main() {
   person.setAge(23);
   person.getInfo();
 
-  Person p1=Person.now();
+  Person p1 = Person.now();
+
+  //把类抽离到lib中
+  Animal animal = new Animal("兔子");
+  animal.setName("猴子");
+  //使用_可以把属性和方法定义为私有（需要把类抽离为文件才有效）,私有方法只有在类中才能使用
+  animal.setAge(3);
+
+  //get方法，通过属性的方式访问方法
+  var rect = new Rect();
+  rect.myHeight; //直接访问方法
+  rect.myHeight = 7; //属性方法，直接赋值
+  print('${rect.area()}');
 }
 
 class Person {
@@ -28,7 +44,7 @@ class Person {
   // Person(this.name,this.age);
 
   //命名构造函数
-  Person.now(){
+  Person.now() {
     print('我是命名构造函数');
   }
 

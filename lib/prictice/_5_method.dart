@@ -118,7 +118,7 @@ var fn3 = () {
   print("匿名方法----");
 };
 
-String printUserInfo2(String name, {int? age, String sex = '男'}) {
+String printUserInfo2(String name, {int age=0, String sex = '男'}) {
   if (age != null) {
     return 'name:$name age:$age  sex:$sex';
   } else {
