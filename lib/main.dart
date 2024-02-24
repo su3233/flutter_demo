@@ -1,16 +1,33 @@
-// Copyright 2013 The Flutter Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-// ignore_for_file: public_member_api_docs
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  runApp(const MyApp());
+  // runApp(const MyApp());
+  runApp(MaterialApp(
+    home: Scaffold(
+      appBar: AppBar(
+        title: const Text("你好flutter"),
+      ),
+      body: const MyAppTwo(),
+    ),
+  ));
+}
+
+class MyAppTwo extends StatelessWidget {
+  const MyAppTwo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text(
+        "我是一个自定义组件",
+        textDirection: TextDirection.ltr,
+        style: TextStyle(color: Colors.green, fontSize: 40),
+      ),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -76,7 +93,7 @@ class SharedPreferencesDemoState extends State<SharedPreferencesDemo> {
                     } else {
                       return Text(
                         'Button tapped ${snapshot.data} time${snapshot.data == 1 ? '' : 's'}.\n\n'
-                            'This should persist across restarts.',
+                        'This should persist across restarts.',
                       );
                     }
                 }
