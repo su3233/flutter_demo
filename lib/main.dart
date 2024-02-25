@@ -32,6 +32,7 @@ void main() {
 /// Image.Asset   Image.remote
 
 class MyImage extends StatelessWidget {
+  static const _imagePath="https://pics0.baidu.com/feed/0eb30f2442a7d933f7c0526420464b1e73f00153.jpeg@f_auto?token=9f2355599b661de1b49379336ca0b621";
   const MyImage({super.key});
 
   @override
@@ -39,27 +40,50 @@ class MyImage extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 150,
-          height: 150,
+          width: 100,
+          height: 100,
           // margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
           decoration: const BoxDecoration(color: Colors.grey),
           child: Image.network(
-            "https://pics0.baidu.com/feed/0eb30f2442a7d933f7c0526420464b1e73f00153.jpeg@f_auto?token=9f2355599b661de1b49379336ca0b621",
+            _imagePath,
             fit: BoxFit.cover,
             // scale: 2,
             repeat: ImageRepeat.repeatX, //背景图片平铺
           ),
         ),
         Container(
-          width: 150,
-          height: 150,
-          margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-          decoration: const BoxDecoration(
+          width: 80,
+          height: 80,
+          margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+          decoration: BoxDecoration(
               color: Colors.grey,
-              image: DecorationImage(
+              borderRadius: BorderRadius.circular(40),
+              image: const DecorationImage(
                   image: NetworkImage(
-                "https://pics0.baidu.com/feed/0eb30f2442a7d933f7c0526420464b1e73f00153.jpeg@f_auto?token=9f2355599b661de1b49379336ca0b621",
-              ))),
+                    _imagePath,
+                  ),
+                  fit: BoxFit.cover)),
+        ),
+        Container(
+          // margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+          child: ClipOval(
+            child: Image.network(
+              _imagePath,
+              width: 80,
+              height: 80,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        //本地图片
+        Container(
+          margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+            child: Image.asset(
+              "images/icon.png",
+              width: 100,
+              height: 100,
+              fit: BoxFit.cover,
+            ),
         )
       ],
     );
