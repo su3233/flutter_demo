@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/app/widget/myFonts.dart';
 import 'package:flutter_demo/prictice/_9_enum.dart';
+import 'package:flutter_demo/data/listData.dart';
 
 main() {
   runApp(const MyApp());
@@ -18,16 +19,65 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text("flutter list"),
         ),
-        // body: const MyHomePage(),
-        // body: const MyListContainer(),
-        body: const MyListHor(),
+        // body: const MyHomePage(),//listView
+        // body: const MyListContainer(),//list内部Container
+        // body: const MyListHor(),//横向列表
+        body: MyListDynamicData(), //列表动态数据
       ),
     );
   }
 }
 
+class MyListDynamicData extends StatelessWidget {
+  List<String> list = [];
+
+  MyListDynamicData({super.key}) {
+    print(listData);
+    for (int i = 0; i < 20; i++) {
+      list.add("我是第$i条数据");
+    }
+  }
+
+  List<Widget> _initData() {
+    List<Widget> datas = [];
+    for (int i = 0; i < 20; i++) {
+      datas.add(ListTile(
+        title: Text("你好flutter_$i"),
+      ));
+    }
+    return datas;
+  }
+
+  List<Widget> _initRealData() {
+    var tempList = listData.map((value) {
+      return ListTile(
+        leading: Image.network("${value["image_url"]}"),
+        title: Text("${value["title"]}"),
+        subtitle: Text("${value["author"]}"),
+      );
+    });
+    return tempList.toList();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // return ListView(
+    //   // children: _initData(),//三种填充数据的方法
+    //   // children: _initRealData(),
+    // );
+
+    return ListView.builder(
+        itemCount: list.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(list[index]),
+          );
+        });
+  }
+}
+
 class MyListHor extends StatelessWidget {
-  const MyListHor();
+  const MyListHor({super.key});
 
   @override
   Widget build(BuildContext context) {
