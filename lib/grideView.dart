@@ -29,12 +29,15 @@ class MyGrid extends StatelessWidget {
       temp.add(Container(
           alignment: Alignment.center,
           decoration: const BoxDecoration(color: Colors.blue),
-          child: Text(
-            "我是第$i个元素",
-            style: const TextStyle(
-              fontSize: 15,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Text(
+              "我是第$i个元素",
+              style: const TextStyle(
+                fontSize: 15,
+              ),
             ),
-          )));
+          )));//Padding只想给空间增加间距时使用
     }
     return temp;
   }
