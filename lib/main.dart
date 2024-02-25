@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'app/widget/myFonts.dart';
 
 void main() {
   // runApp(const MyApp());
@@ -21,18 +22,49 @@ void main() {
           const SizedBox(
             height: 20,
           ),
-          MyImage()
+          MyImage(),
+          const SizedBox(
+            height: 20,
+          ),
+          MyIcon()
         ],
       ),
     ),
   ));
 }
 
+class MyIcon extends StatelessWidget {
+  const MyIcon({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      children: [
+        SizedBox(height: 20),
+        Icon(Icons.home, size: 20, color: Colors.red),
+        Icon(Icons.category),
+        SizedBox(width: 10),
+        Icon(
+          MyFonts.book,
+          size: 20,
+          color: Colors.red,
+        ),
+        Icon(
+          MyFonts.shopCart,
+          size: 20,
+        )
+      ],
+    );
+  }
+}
+
 /// 2、flutter图片组件Image，本地图片，远程图片，图片剪切，圆形图片
 /// Image.Asset   Image.remote
 
 class MyImage extends StatelessWidget {
-  static const _imagePath="https://pics0.baidu.com/feed/0eb30f2442a7d933f7c0526420464b1e73f00153.jpeg@f_auto?token=9f2355599b661de1b49379336ca0b621";
+  static const _imagePath =
+      "https://pics0.baidu.com/feed/0eb30f2442a7d933f7c0526420464b1e73f00153.jpeg@f_auto?token=9f2355599b661de1b49379336ca0b621";
+
   const MyImage({super.key});
 
   @override
@@ -78,12 +110,12 @@ class MyImage extends StatelessWidget {
         //本地图片
         Container(
           margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-            child: Image.asset(
-              "images/icon.png",
-              width: 100,
-              height: 100,
-              fit: BoxFit.cover,
-            ),
+          child: Image.asset(
+            "images/icon.png",
+            width: 100,
+            height: 100,
+            fit: BoxFit.cover,
+          ),
         )
       ],
     );
