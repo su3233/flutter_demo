@@ -20,7 +20,7 @@ void listTest() {
   list.insert(1, "橘子");
   print(list.indexOf("香蕉"));
   print(list);
-  var str = list.join('-'); //list转换为string
+  var str = list.join('-'); //list转换为string##
   print('list转换为str：$str');
   var str1 = '苹果-橘子-aaa-aaa-222-香蕉-苹果-true-123'; //string转换为list
   var list2 = str1.split('-');

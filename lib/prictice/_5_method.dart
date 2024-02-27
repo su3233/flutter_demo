@@ -6,9 +6,9 @@ void main() {
   String info = printInfo();
   print(info);
 
-//可选参数，默认参数
-//   var user = printUserName("张三");
-//  var user =  printUserName("张三", 20);
+//可选参数，默认参数--
+  var user1 = printUserName("张三");
+  var user2 =  printUserName("张三", 20);
   var user = printUserName("张三", 33, '男');
   print(user);
 
@@ -16,7 +16,7 @@ void main() {
   print('命名参数-----');
   print(printUserInfo2('lisi', age: 22));
 
-  //把方法当作参数的方法，匿名方法
+  //把方法当作参数的方法，匿名方法--
   fn(fn1);
   fn3();
 
@@ -34,17 +34,18 @@ void main() {
   isHanOuShu(22);
 
   /**
-   * 匿名方法，自执行方法，递归
+   * 匿名方法，自执行方法，递归--
    */
   var printMe = (int m) {
     print("匿名方法-----$m");
   };
   printMe(2);
 
-  //自执行方法
-  // (() {
-  //   print("自执行方法");
-  // })
+  //自执行方法--
+  (() {
+    print("自执行方法");
+  });
+
   ((String str) {
     print('我是自执行方法....$str');
   })('参数');
@@ -66,7 +67,7 @@ void main() {
   fu(100);
   print(sum);
 
-  //闭包，全局使用并且不占内存
+  //闭包，全局使用并且不占内存--
   var b = fun1();
   b();
   b();
@@ -113,7 +114,7 @@ void fn(fn1) {
 void fn1() {
   print("方法参数");
 }
-
+//--
 var fn3 = () {
   print("匿名方法----");
 };
@@ -138,7 +139,7 @@ String printUserName(
   }
 }
 
-/// 方法内还可以写方法，但是只能在方法内不调用
+/// 方法内还可以写方法，但是只能在方法内调用##
 String printInfo() {
   print("自定义方法");
   int neiBu() {
