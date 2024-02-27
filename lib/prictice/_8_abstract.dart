@@ -7,6 +7,7 @@ main() {
   //抽象类
   var meiyuan = Meiyuan();
   meiyuan.pay();
+  meiyuan.printInfo();
   var renminbi = RenminBi();
   renminbi.pay(); //实现的方法
   renminbi.run(); //自定义的方法
@@ -15,7 +16,7 @@ main() {
   Money renmin = RenminBi();
   renmin.pay();
 
-  //接口，普通类和抽象类都可以implement
+  //接口，普通类和抽象类都可以implement--
   var mySql = MySql("http:www.baidu.com");
   mySql.add();
   mySql.update();
@@ -24,7 +25,7 @@ main() {
   var c = new C();
   c.printA();
 
-  //使用with实现多实现特性，f可使用a，b中的属性和方法.
+  //使用with实现多实现特性，f可使用a，b中的属性和方法.--
   //作为mixins的类只能继承自Object，就是D和E不能继承其他类
   //作为mixins的类不能有构造函数，一个类可以mixnis多个mixins类，
   //可以extends+with，Person, D, E如果有相同的方法，使用的是最后E的方法
@@ -32,13 +33,14 @@ main() {
   f.d;
   f.printD();
   f.printE();
+  f.printG();
   print('${f is D}...${f is E}');
 }
 
-// class F with D, E {}
-// class F extends Person with D, E {
-//   F(int age, String name) : super(age, name);
-// }
+class H with D, E {}
+class M extends Person with D, E {
+  M(int age, String name) : super(age, name);
+}
 
 
 class F with G, D, E {}
@@ -128,8 +130,7 @@ class MySql implements Db {
 
   @override
   query() {
-    // TODO: implement query
-    throw UnimplementedError();
+    print("implement query");
   }
 }
 
@@ -144,7 +145,7 @@ abstract class Money {
 class RenminBi extends Money {
   @override
   pay() {
-    print('人民币。。。实现抽象方法');
+    print('人民币pay。。。实现抽象方法');
   }
 
   run() {
@@ -156,5 +157,9 @@ class Meiyuan extends Money {
   @override
   pay() {
     print('美元。。。。实现抽象方法');
+  }
+  @override
+  void printInfo() {
+    super.printInfo();
   }
 }

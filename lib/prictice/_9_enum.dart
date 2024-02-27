@@ -1,4 +1,3 @@
-
 main() {
   /**
    * 范型，范型方法，范型类，范型接口
@@ -10,16 +9,20 @@ main() {
   //范型类，范型接口和范型类一样类声明为abstract
   var list = new List<String>.filled(2, 'aaa');
   var myList = MyList();
-  var myList1 = MyList<String>(); //指定类型
   myList.add('addd');
   myList.add(123);
   myList.add(true);
   print(myList.getList());
 
+  var myList1 = MyList<String>(); //指定类型
+  myList1.add("111");
+
   //范型接口
-  var memoryCache=MemoryCache<String>();
+  var fileCache=FileCache<int>();
+  fileCache.setByKey("key", 11);
+  fileCache.getByKey("key");
+  var memoryCache = MemoryCache<String>();
   memoryCache.setByKey('index', '首页数据');
-  
 }
 
 class MemoryCache<T> implements Cache<T> {
@@ -28,27 +31,31 @@ class MemoryCache<T> implements Cache<T> {
 
   @override
   void setByKey(String key, T value) {
-    print('我是内存缓存');
+    print('我是内存缓存 key:$key..value:$value');
   }
 }
 
 class FileCache<T> implements Cache<T> {
   @override
-  getByKey(String key) {}
+  getByKey(String key) {
+    print("fileCache key:$key");
+  }
 
   @override
   void setByKey(String key, T value) {
-    print('我是文件缓存');
+    print("fileCache key:$key..value:$value");
   }
 }
 
 abstract class Cache<T> {
   getByKey(String key);
+
   void setByKey(String key, T value);
 }
 
 class MyList<T> {
   List list = <T>[];
+
   add(T value) {
     this.list.add(value);
   }
