@@ -18,6 +18,7 @@ class Animal {
 
   void getRun() {
     this._run();
+    // print('late初始值：$_age');//late不初始化会报错_age
     print('通过共有方法访问私有方法');
   }
 }

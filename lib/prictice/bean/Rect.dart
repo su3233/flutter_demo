@@ -4,6 +4,15 @@ class Rect {
    */
 
   num height;
+
+  get() {
+    return height;
+  }
+
+  set(num n) {
+    height = n;
+  }
+
   num width;
 
   Rect()
@@ -12,6 +21,7 @@ class Rect {
     //构造函数赋初始值
     print('${this.height}...${this.width}'); //在类初始化之前赋值
   }
+
   num area() {
     print('-----类中的属性方法');
     return this.height * this.width;
@@ -19,8 +29,11 @@ class Rect {
 
   get myHeight {
     print('-----类中的get方法');
-
     return this.height;
+  }
+
+  get myWidth {
+    return width;
   }
 
   set myHeight(value) {

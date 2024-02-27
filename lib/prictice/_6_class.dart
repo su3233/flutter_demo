@@ -17,12 +17,16 @@ main() {
   Animal animal = new Animal("兔子");
   animal.setName("猴子");
   //使用_可以把属性和方法定义为私有（需要把类抽离为文件才有效）,私有方法只有在类中才能使用
+  animal.getRun();
   animal.setAge(3);
+  // animal._run();
 
-  //get方法，通过属性的方式访问方法
+  //get方法，通过属性的方式访问方法--
   var rect = new Rect();
   rect.myHeight; //直接访问方法
   rect.myHeight = 7; //属性方法，直接赋值
+  print("get:${rect.get()}");
+  print("get:${rect.myWidth}");
   print('${rect.area()}');
 }
 
