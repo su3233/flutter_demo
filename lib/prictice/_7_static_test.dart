@@ -10,12 +10,13 @@ main() {
    * 对象中的操作符，？条件判断 
    * as 类型转换
    * is 类型判断
-   * ..级联操作
+   * ..级联操作--
    */
-  Book? b;
-  b?.getBookPrice();
-  print(b is Object);
-  // (b as Book).getBookPrice();
+  Book? b=Book("张三", 20);
+  // Book? b;
+  // b?.getBookPrice();
+  print(b is Object);//没有初始化是为null
+  (b as Book).getBookPrice();
 
   book
     ..price = 30
@@ -25,6 +26,7 @@ main() {
   //继承extends，子类可复写父类的方法,父类有构造函数时子类要继承构造函数
   LoveBook loveBook = new LoveBook('11', 2222);
   loveBook.author = "lisi";
+  loveBook.getBookPrice();
 
   //子类中复写父类的方法
 }
@@ -41,7 +43,11 @@ class Book {
   int price;
   String author;
 
-  void getBookPrice() {}
+  void getBookPrice() {
+    // if (kDebugMode) {
+      print("price:$price");
+    // }
+  }
 
   void getDefault(){
 
@@ -49,6 +55,7 @@ class Book {
 }
 
 class LoveBook extends Book {
+  //默认构造方法
   // LoveBook(String author, int price, String sex) : super(author, price) {
   //   this.sex = sex;
   // }
