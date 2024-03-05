@@ -12,7 +12,10 @@ void main() {
         title: const Text(
           "你好flutter",
           textAlign: TextAlign.center,
+
         ),
+        backgroundColor: Colors.yellow,
+
       ),
       body: Column(
         children: [

@@ -15,6 +15,8 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text("你好flutter"),
+          backgroundColor: Colors.yellow,
+
         ),
         // body: CardWidget(),
         // body: AspectRatioWidget(),

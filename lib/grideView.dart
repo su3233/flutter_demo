@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 main() {
   runApp(const MyApp());
@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("flutter list"),
+          backgroundColor: Colors.yellow,
         ),
         body: MyGrid(),
       ),
@@ -37,7 +38,7 @@ class MyGrid extends StatelessWidget {
                 fontSize: 15,
               ),
             ),
-          )));//Padding只想给空间增加间距时使用
+          ))); //Padding只想给空间增加间距时使用
     }
     return temp;
   }
@@ -56,6 +57,7 @@ class MyGrid extends StatelessWidget {
 
     return GridView.builder(
         //通过builder构建
+        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 10,

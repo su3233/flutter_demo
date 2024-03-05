@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("flutter list"),
+          backgroundColor: Colors.yellow,
+
         ),
         // body: const MyHomePage(),//listView
         // body: const MyListContainer(),//list内部Container

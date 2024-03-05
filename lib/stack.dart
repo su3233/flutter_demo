@@ -15,6 +15,8 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("flutter list"),
+          backgroundColor: Colors.yellow,
+
         ),
         //封装+Row+布局
         // body: const Column(
