@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// BottomNavigationBar,Drawer(DrawerHeader,UserAccountsDrawerHeader)
 main() {
   runApp(const MyApp());
 }
@@ -80,6 +81,39 @@ class _TabsState extends State<Tabs> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      drawer: Drawer(
+          child: Column(
+        children: <Widget>[
+          UserAccountsDrawerHeader(
+            accountName: const Text("大地老师"),
+            accountEmail: const Text("dadi@itying.com"),
+            currentAccountPicture: const CircleAvatar(
+              backgroundImage:
+                  NetworkImage("https://www.itying.com/images/flutter/3.png"),
+            ),
+            decoration: const BoxDecoration(
+                color: Colors.yellow,
+                image: DecorationImage(
+                    image: NetworkImage(
+                        "https://www.itying.com/images/flutter/2.png"),
+                    fit: BoxFit.cover)),
+            otherAccountsPictures: <Widget>[
+              Image.network("https://www.itying.com/images/flutter/4.png"),
+              Image.network("https://www.itying.com/images/flutter/5.png"),
+              Image.network("https://www.itying.com/images/flutter/6.png")
+            ],
+          ),
+          const ListTile(
+            title: Text("个人中心"),
+            leading: CircleAvatar(child: Icon(Icons.people)),
+          ),
+          const Divider(),
+          const ListTile(
+            title: Text("系统设置"),
+            leading: CircleAvatar(child: Icon(Icons.settings)),
+          )
+        ],
+      )),
     );
   }
 }
@@ -128,7 +162,7 @@ class CategoryPage extends StatelessWidget {
   }
 }
 
-class HomePage extends  StatelessWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
