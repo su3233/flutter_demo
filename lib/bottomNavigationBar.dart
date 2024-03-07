@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-/// BottomNavigationBar,Drawer(DrawerHeader,UserAccountsDrawerHeader)
+import 'utils/KeepAliveWrapper.dart';
+
+/// BottomNavigationBar,Drawer(DrawerHeader,UserAccountsDrawerHeader),AppBar,TabBar
 main() {
   runApp(const MyApp());
 }
@@ -11,6 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      //去掉debug图标
+      debugShowCheckedModeBanner: false,
       title: "BottomNavigationBar",
       // theme: ThemeData(primarySwatch: Colors.blue),
       home: Tabs(),
@@ -40,7 +44,27 @@ class _TabsState extends State<Tabs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Flutter App")),
+      appBar: AppBar(
+        backgroundColor: Colors.red,
+        // leading: IconButton(
+        //     icon: const Icon(Icons.menu),
+        //     onPressed: () {
+        //       print('menu Pressed');
+        //     }),
+        title: const Text('FlutterDemo'),
+        actions: <Widget>[
+          IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                print('Search Pressed');
+              }),
+          IconButton(
+              icon: const Icon(Icons.more_horiz),
+              onPressed: () {
+                print('more_horiz Pressed');
+              })
+        ],
+      ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
           fixedColor: Colors.red,
@@ -162,13 +186,137 @@ class CategoryPage extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() {
+    return _HomePageState();
+  }
+}
+
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 8, vsync: this);
+    _tabController.addListener(() {
+      if (_tabController.animation!.value == _tabController.index) {
+        print("_tabController:${_tabController.index}"); //获取点击或滑动页面的索引值
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("HomePage"),
-    );
+    return Scaffold(
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(50),
+            child: AppBar(
+              // backgroundColor: const Color.fromARGB(255, 253, 247, 247),
+              // elevation: 10,
+              // title: const Text("Flutter App"),
+              bottom: TabBar(
+                controller: _tabController,
+                indicatorColor: Colors.red,
+                labelColor: Colors.red,
+                unselectedLabelColor: Colors.black26,
+                indicatorSize: TabBarIndicatorSize.label,
+                tabs: const [
+                  Tab(child: Text("热门")),
+                  Tab(child: Text("推荐")),
+                  Tab(child: Text("视频"))
+                ],
+              ),
+            )),
+        body: TabBarView(controller: _tabController, children: [
+          KeepAliveWrapper(
+            child: ListView(
+              children: const [
+                ListTile(
+                  title: Text("第一个tab"),
+                ),
+                ListTile(
+                  title: Text("第一个tab"),
+                ),
+                ListTile(
+                  title: Text("第一个tab"),
+                ),
+                ListTile(
+                  title: Text("第一个tab"),
+                ),
+                ListTile(
+                  title: Text("第一个tab"),
+                ),
+                ListTile(
+                  title: Text("第一个tab"),
+                ),
+                ListTile(
+                  title: Text("第一个tab"),
+                ),
+                ListTile(
+                  title: Text("第一个tab"),
+                ),
+                ListTile(
+                  title: Text("第一个tab"),
+                ),
+                ListTile(
+                  title: Text("第一个tab"),
+                ),
+              ],
+            ),
+          ),
+          KeepAliveWrapper(
+            child: ListView(
+              children: const [
+                ListTile(
+                  title: Text("第二个tab"),
+                ),
+                ListTile(
+                  title: Text("第二个tab"),
+                ),
+                ListTile(
+                  title: Text("第二个tab"),
+                ),
+                ListTile(
+                  title: Text("第二个tab"),
+                ),
+                ListTile(
+                  title: Text("第二个tab"),
+                ),
+              ],
+            ),
+          ),
+          KeepAliveWrapper(
+            child: ListView(
+              children: const [
+                ListTile(
+                  title: Text("第三个tab"),
+                ),
+                ListTile(
+                  title: Text("第三个tab"),
+                ),
+                ListTile(
+                  title: Text("第三个tab"),
+                ),
+                ListTile(
+                  title: Text("第三个tab"),
+                ),
+                ListTile(
+                  title: Text("第三个tab"),
+                ),
+              ],
+            ),
+          )
+        ]));
   }
 }
