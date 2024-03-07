@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
 
 main() {
-  runApp(MyStatefulwidget());
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "flutter statefull",
+      // theme: ThemeData(primarySwatch: Colors.blue),
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          title: Text("flutter stateful"),
+        ),
+        body: MyStatefulwidget(),
+      ),
+    );
+  }
 }
 
 class MyStatefulwidget extends StatefulWidget {
@@ -20,17 +39,15 @@ class _StateFul extends State<MyStatefulwidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "flutter statefullWdiget",
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue,
+        onPressed: () {
+          setState(() {
+            _list.add("我是一条数据");
+          });
+        },
+        child: const Icon(Icons.add),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        setState(() {
-          _list.add("我是一条数据");
-        });
-      }),
       body: ListView(
           children: _list.map((s) {
         return ListTile(
