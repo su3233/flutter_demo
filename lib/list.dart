@@ -4,12 +4,12 @@ import 'package:flutter_demo/prictice/_9_enum.dart';
 import 'package:flutter_demo/data/listData.dart';
 
 main() {
-  runApp(const MyApp());
+  runApp(const ListPage());
 }
 
 //横向列表高度自适应，纵向列表宽度自适应
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ListPage extends StatelessWidget {
+  const ListPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -164,24 +164,42 @@ class SettingPage extends StatelessWidget {
   }
 }
 
+///router
 class MessagePage extends StatelessWidget {
   const MessagePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("MessagePage"),
-    );
+    return ElevatedButton(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return const CategoryPage(title: "我来自MessagePage");
+          }));
+        },
+        child: const Text("跳转到CategoryPage"));
   }
 }
 
-class CategoryPage extends StatelessWidget {
-  const CategoryPage({super.key});
+class CategoryPage extends StatefulWidget {
+  final String title;
+
+  const CategoryPage({super.key, this.title = "Search Page"});
 
   @override
+  State<CategoryPage> createState() => _CategoryPage();
+}
+
+class _CategoryPage extends State<CategoryPage> {
+  @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("CategoryPage"),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        centerTitle: true,
+      ),
+      body: const Center(
+        child: Text("组件居中"),
+      ),
     );
   }
 }
