@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/routers/routers.dart';
 import 'pages/usersPages.dart';
 import 'utils/KeepAliveWrapper.dart';
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 
 /// BottomNavigationBar,Drawer(DrawerHeader,UserAccountsDrawerHeader),AppBar,TabBar
 
@@ -20,6 +20,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       //去掉debug图标
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+              centerTitle: true;
+          )
+      ),
       title: "BottomNavigationBar",
       routes: routes,
       initialRoute: "/",
@@ -125,37 +130,37 @@ class _TabsState extends State<Tabs> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       drawer: Drawer(
           child: Column(
-        children: <Widget>[
-          UserAccountsDrawerHeader(
-            accountName: const Text("大地老师"),
-            accountEmail: const Text("dadi@itying.com"),
-            currentAccountPicture: const CircleAvatar(
-              backgroundImage:
+            children: <Widget>[
+              UserAccountsDrawerHeader(
+                accountName: const Text("大地老师"),
+                accountEmail: const Text("dadi@itying.com"),
+                currentAccountPicture: const CircleAvatar(
+                  backgroundImage:
                   NetworkImage("https://www.itying.com/images/flutter/3.png"),
-            ),
-            decoration: const BoxDecoration(
-                color: Colors.yellow,
-                image: DecorationImage(
-                    image: NetworkImage(
-                        "https://www.itying.com/images/flutter/2.png"),
-                    fit: BoxFit.cover)),
-            otherAccountsPictures: <Widget>[
-              Image.network("https://www.itying.com/images/flutter/4.png"),
-              Image.network("https://www.itying.com/images/flutter/5.png"),
-              Image.network("https://www.itying.com/images/flutter/6.png")
+                ),
+                decoration: const BoxDecoration(
+                    color: Colors.yellow,
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            "https://www.itying.com/images/flutter/2.png"),
+                        fit: BoxFit.cover)),
+                otherAccountsPictures: <Widget>[
+                  Image.network("https://www.itying.com/images/flutter/4.png"),
+                  Image.network("https://www.itying.com/images/flutter/5.png"),
+                  Image.network("https://www.itying.com/images/flutter/6.png")
+                ],
+              ),
+              const ListTile(
+                title: Text("个人中心"),
+                leading: CircleAvatar(child: Icon(Icons.people)),
+              ),
+              const Divider(),
+              const ListTile(
+                title: Text("系统设置"),
+                leading: CircleAvatar(child: Icon(Icons.settings)),
+              )
             ],
-          ),
-          const ListTile(
-            title: Text("个人中心"),
-            leading: CircleAvatar(child: Icon(Icons.people)),
-          ),
-          const Divider(),
-          const ListTile(
-            title: Text("系统设置"),
-            leading: CircleAvatar(child: Icon(Icons.settings)),
-          )
-        ],
-      )),
+          )),
     );
   }
 }
@@ -261,7 +266,7 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
         appBar: PreferredSize(
 
-            ///也可以在appBar的title中直接写tabBar，tabBar使用Conrainer包裹设置高度
+          ///也可以在appBar的title中直接写tabBar，tabBar使用Conrainer包裹设置高度
             preferredSize: const Size.fromHeight(50),
             child: AppBar(
               // backgroundColor: const Color.fromARGB(255, 253, 247, 247),
@@ -291,6 +296,7 @@ class _HomePageState extends State<HomePage>
               ),
             )),
         body: TabBarView(controller: _tabController, children: [
+
           ///KeepAliveWrapper保存滑动的状态
           KeepAliveWrapper(
             child: ListView(
@@ -330,12 +336,12 @@ class _HomePageState extends State<HomePage>
           ),
           KeepAliveWrapper(
               child: ListView(
-            children: const [
-              ListTile(
-                title: Text("推荐list"),
-              )
-            ],
-          )),
+                children: const [
+                  ListTile(
+                    title: Text("推荐list"),
+                  )
+                ],
+              )),
           KeepAliveWrapper(
             child: ListView(
               children: const [
