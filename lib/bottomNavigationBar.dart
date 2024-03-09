@@ -217,10 +217,11 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
+//生命周期函数，组件初始化时
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 8, vsync: this);
+    _tabController = TabController(length: 9, vsync: this);
     _tabController.addListener(() {
       if (_tabController.animation!.value == _tabController.index) {
         print("_tabController:${_tabController.index}"); //获取点击或滑动页面的索引值
@@ -228,6 +229,7 @@ class _HomePageState extends State<HomePage>
     });
   }
 
+//生命周期函数，组件销毁时
   @override
   void dispose() {
     super.dispose();
@@ -238,57 +240,99 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
+
+            ///也可以在appBar的title中直接写tabBar，tabBar使用Conrainer包裹设置高度
             preferredSize: const Size.fromHeight(50),
             child: AppBar(
               // backgroundColor: const Color.fromARGB(255, 253, 247, 247),
               // elevation: 10,
               // title: const Text("Flutter App"),
               bottom: TabBar(
+                isScrollable: true,
                 controller: _tabController,
                 indicatorColor: Colors.red,
                 labelColor: Colors.red,
                 unselectedLabelColor: Colors.black26,
                 indicatorSize: TabBarIndicatorSize.label,
+                // onTap: (index) {
+                //   ///只能监听tab的点击事件，不能监听滑动事件
+                // },
                 tabs: const [
                   Tab(child: Text("热门")),
                   Tab(child: Text("推荐")),
-                  Tab(child: Text("视频"))
+                  Tab(child: Text("视频")),
+                  Tab(child: Text("体育")),
+                  Tab(child: Text("新闻")),
+                  Tab(child: Text("地方")),
+                  Tab(child: Text("深圳")),
+                  Tab(child: Text("北京")),
+                  Tab(child: Text("奥运"))
                 ],
               ),
             )),
         body: TabBarView(controller: _tabController, children: [
+          ///KeepAliveWrapper保存滑动的状态
           KeepAliveWrapper(
             child: ListView(
               children: const [
                 ListTile(
-                  title: Text("第一个tab"),
+                  title: Text("热门item"),
                 ),
                 ListTile(
-                  title: Text("第一个tab"),
+                  title: Text("热门item"),
                 ),
                 ListTile(
-                  title: Text("第一个tab"),
+                  title: Text("热门item"),
                 ),
                 ListTile(
-                  title: Text("第一个tab"),
+                  title: Text("热门item"),
                 ),
                 ListTile(
-                  title: Text("第一个tab"),
+                  title: Text("热门item"),
                 ),
                 ListTile(
-                  title: Text("第一个tab"),
+                  title: Text("热门item"),
                 ),
                 ListTile(
-                  title: Text("第一个tab"),
+                  title: Text("热门item"),
                 ),
                 ListTile(
-                  title: Text("第一个tab"),
+                  title: Text("热门item"),
                 ),
                 ListTile(
-                  title: Text("第一个tab"),
+                  title: Text("热门item"),
                 ),
                 ListTile(
-                  title: Text("第一个tab"),
+                  title: Text("热门item"),
+                ),
+              ],
+            ),
+          ),
+          KeepAliveWrapper(
+              child: ListView(
+            children: const [
+              ListTile(
+                title: Text("推荐list"),
+              )
+            ],
+          )),
+          KeepAliveWrapper(
+            child: ListView(
+              children: const [
+                ListTile(
+                  title: Text("视频item"),
+                ),
+                ListTile(
+                  title: Text("视频item"),
+                ),
+                ListTile(
+                  title: Text("视频item"),
+                ),
+                ListTile(
+                  title: Text("视频item"),
+                ),
+                ListTile(
+                  title: Text("视频item"),
                 ),
               ],
             ),
@@ -297,19 +341,7 @@ class _HomePageState extends State<HomePage>
             child: ListView(
               children: const [
                 ListTile(
-                  title: Text("第二个tab"),
-                ),
-                ListTile(
-                  title: Text("第二个tab"),
-                ),
-                ListTile(
-                  title: Text("第二个tab"),
-                ),
-                ListTile(
-                  title: Text("第二个tab"),
-                ),
-                ListTile(
-                  title: Text("第二个tab"),
+                  title: Text("体育item"),
                 ),
               ],
             ),
@@ -318,23 +350,47 @@ class _HomePageState extends State<HomePage>
             child: ListView(
               children: const [
                 ListTile(
-                  title: Text("第三个tab"),
-                ),
-                ListTile(
-                  title: Text("第三个tab"),
-                ),
-                ListTile(
-                  title: Text("第三个tab"),
-                ),
-                ListTile(
-                  title: Text("第三个tab"),
-                ),
-                ListTile(
-                  title: Text("第三个tab"),
+                  title: Text("新闻list"),
                 ),
               ],
             ),
-          )
+          ),
+          KeepAliveWrapper(
+            child: ListView(
+              children: const [
+                ListTile(
+                  title: Text("地方list"),
+                ),
+              ],
+            ),
+          ),
+          KeepAliveWrapper(
+            child: ListView(
+              children: const [
+                ListTile(
+                  title: Text("深圳list"),
+                ),
+              ],
+            ),
+          ),
+          KeepAliveWrapper(
+            child: ListView(
+              children: const [
+                ListTile(
+                  title: Text("北京list"),
+                ),
+              ],
+            ),
+          ),
+          KeepAliveWrapper(
+            child: ListView(
+              children: const [
+                ListTile(
+                  title: Text("奥运list"),
+                ),
+              ],
+            ),
+          ),
         ]));
   }
 }
