@@ -38,12 +38,6 @@ class RouterPage extends StatelessWidget {
                     child: const Text("命名路由跳转到news")),
                 ElevatedButton(
                     onPressed: () {
-                      CommonUtils.showToast("普通路由跳转到form");
-                      Navigator.pushNamed(context, "/form");
-                    },
-                    child: const Text("普通路由跳转到form")),
-                ElevatedButton(
-                    onPressed: () {
                       Navigator.pushNamed(context, "/form",
                           arguments: {"title": "我是命名路由传值", "id": 123});
                     },

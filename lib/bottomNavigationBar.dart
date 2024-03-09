@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_demo/routers/routers.dart';
+import 'pages/usersPages.dart';
 import 'utils/KeepAliveWrapper.dart';
+import 'package:flutter/cupertino.dart';
 
 /// BottomNavigationBar,Drawer(DrawerHeader,UserAccountsDrawerHeader),AppBar,TabBar
+
+///使android和ios使用相同的页面切换风格，import 'package:flutter/cupertino.dart';
+/// 然后代码中MaterialPageRoute替换为CupertinoPageRoute
 main() {
   runApp(const MyApp());
 }
@@ -12,18 +17,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       //去掉debug图标
       debugShowCheckedModeBanner: false,
       title: "BottomNavigationBar",
+      routes: routes,
+      initialRoute: "/",
+      onGenerateRoute: onGenerateRoute,
       // theme: ThemeData(primarySwatch: Colors.blue),
-      home: Tabs(),
+      home: Builder(builder: (BuildContext context) {
+        return const Tabs();
+      }),
     );
   }
 }
 
 class Tabs extends StatefulWidget {
-  const Tabs({super.key});
+  final int index;
+
+  const Tabs({super.key, this.index = 0});
 
   @override
   State<Tabs> createState() {
@@ -40,6 +52,12 @@ class _TabsState extends State<Tabs> {
     SettingPage(),
     UserPage()
   ];
+
+  @override
+  void initState() {
+    _currentIndex = widget.index;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,17 +156,6 @@ class _TabsState extends State<Tabs> {
           )
         ],
       )),
-    );
-  }
-}
-
-class UserPage extends StatelessWidget {
-  const UserPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("UserPage"),
     );
   }
 }

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/bottomNavigationBar.dart';
 
 import '../pages/form.dart';
 import '../pages/news.dart';
+import '../pages/usersPages.dart';
 import '../router.dart';
 
-final Map routes = {
+final Map<String,WidgetBuilder> routes = {
+  '/': (context) => const CategoryPage(id: "3"),
   '/search': (context) => const SearchPage(),
 
   ///命名路由传值
@@ -12,6 +15,10 @@ final Map routes = {
       // args: {"key": "123"},
       arguments: arguments),
   '/news': (context) => const NewsPage(),
+  '/login': (context) => const LoginPage(),
+  '/register_one': (context) => const RegisterOnePage(),
+  '/register_two': (context) => const RegisterTwoPage(),
+  '/register_three': (context) => const RegisterThreePage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {
