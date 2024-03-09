@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/routers/routers.dart';
 import 'package:flutter_demo/utils/commonUtils.dart';
 import 'pages/news.dart';
 import 'pages/form.dart';
@@ -6,21 +7,11 @@ import 'pages/form.dart';
 ///路由包括普通路由和命名路由,
 ///要是路由根空间不能是MaterialApp，可以使用Builder传值
 void main() {
-  runApp(RouterPage());
+  runApp(const RouterPage());
 }
 
 class RouterPage extends StatelessWidget {
-  RouterPage({super.key});
-
-  final Map routes = {
-    '/search': (context) => const SearchPage(),
-
-    ///命名路由传值
-    '/form': (context, {arguments}) => FormPage(
-        // args: {"key": "123"},
-        arguments: arguments),
-    '/news': (context) => const NewsPage(),
-  };
+  const RouterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,23 +19,7 @@ class RouterPage extends StatelessWidget {
       title: "router",
       theme: ThemeData(primarySwatch: Colors.yellow),
       // initialRoute: "/news",//初始化路由
-      onGenerateRoute: (RouteSettings settings) {
-        final String? name = settings.name;
-        final Function? pageContentBuilder = routes[name];
-        if (pageContentBuilder != null) {
-          if (settings.arguments != null) {
-            final Route route = MaterialPageRoute(
-                builder: (context) =>
-                    pageContentBuilder(context, arguments: settings.arguments));
-            return route;
-          } else {
-            final Route route = MaterialPageRoute(
-                builder: (context) => pageContentBuilder(context));
-            return route;
-          }
-        }
-        return null;
-      },
+      onGenerateRoute: onGenerateRoute,
       home: Builder(
         builder: (BuildContext context) {
           return Scaffold(
