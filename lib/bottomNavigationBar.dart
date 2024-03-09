@@ -35,7 +35,7 @@ class _TabsState extends State<Tabs> {
   int _currentIndex = 0;
   final List<Widget> _pages = const [
     HomePage(),
-    CategoryPage(),
+    CategoryPage(id: "1"),
     MessagePage(),
     SettingPage(),
     UserPage()
@@ -173,7 +173,7 @@ class MessagePage extends StatelessWidget {
     return ElevatedButton(
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return const CategoryPage(title: "我来自MessagePage");
+            return const CategoryPage(title: "我来自MessagePage", id: "1");
           }));
         },
         child: const Text("跳转到CategoryPage"));
@@ -182,8 +182,9 @@ class MessagePage extends StatelessWidget {
 
 class CategoryPage extends StatefulWidget {
   final String title;
+  final String id;
 
-  const CategoryPage({super.key, this.title = "Search Page"});
+  const CategoryPage({super.key, this.title = "Search Page", required this.id});
 
   @override
   State<CategoryPage> createState() => _CategoryPage();
@@ -191,8 +192,20 @@ class CategoryPage extends StatefulWidget {
 
 class _CategoryPage extends State<CategoryPage> {
   @override
+  void initState() {
+    print("收到：id${widget.id}");
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.message),
+          onPressed: () {
+            ///返回上个页面
+            Navigator.pop(context);
+          }),
       appBar: AppBar(
         title: Text(widget.title),
         centerTitle: true,
