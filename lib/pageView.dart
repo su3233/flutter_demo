@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/pages/swiper.dart';
+import 'package:flutter_demo/utils/KeepAliveWrapper.dart';
 
 ///pageView实现轮播图
 ///可通过PageView创建，也可通过PageView.Builder
@@ -81,7 +82,7 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: [Swiper(pageList: pageList)],
+      children: [KeepAliveWrapper(child: Swiper(pageList: pageList))],
     );
   }
 }
