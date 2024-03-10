@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/aspectRatio.dart';
+import 'package:flutter_demo/widget/MyDialog.dart';
 
-///AlertDialog,SimpleDialog,SimpleDialogOption
+///AlertDialog,SimpleDialog,SimpleDialogOption,自定义dialog
 main() {
   runApp(
     const MyApp(),
@@ -45,9 +46,10 @@ class _DialogPages extends State<DialogPage> {
               onPressed: _alertDialog, child: const Text("AlertDialog")),
           ElevatedButton(
               onPressed: _simpleDialog, child: const Text("SimpleDialog")),
-         ElevatedButton(
+          ElevatedButton(
               onPressed: _modelBottomSheet,
               child: const Text("showModalBottomSheet")),
+          ElevatedButton(onPressed: _myDialog, child: const Text("自定义dialog")),
         ],
       ),
     );
@@ -150,6 +152,23 @@ class _DialogPages extends State<DialogPage> {
                 },
               )
             ],
+          );
+        });
+    print(result);
+  }
+
+  void _myDialog() async {
+    var result = await showDialog(
+      //设置点击外部不可关闭
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return MyDialog(
+            title: "标题",
+            content: "我是一个自定义dialog",
+            onTap: () {
+              Navigator.of(context).pop("自定义dialog的关闭事件");
+            },
           );
         });
     print(result);
