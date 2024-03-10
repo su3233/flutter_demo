@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/aspectRatio.dart';
 import 'package:flutter_demo/widget/MyDialog.dart';
 
-///AlertDialog,SimpleDialog,SimpleDialogOption,自定义dialog
+///AlertDialog,SimpleDialog,SimpleDialogOption,自定义dialog,定时器实现x秒后自定关闭dialog
 main() {
   runApp(
     const MyApp(),

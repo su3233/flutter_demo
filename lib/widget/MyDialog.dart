@@ -1,10 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
-///自定义dialog，InkWell（点击事件，长按事件等）
+///自定义dialog，InkWell（点击事件，长按事件等）,倒计时后自动关闭
 class MyDialog extends Dialog {
   final String title;
   final String content;
   final Function()? onTap;
+
+  _showDialog(context) {
+    Timer.periodic(const Duration(milliseconds: 3000), (timer) {
+      Navigator.pop(context);
+      timer.cancel();
+    });
+  }
 
   const MyDialog({
     super.key,
@@ -15,6 +24,7 @@ class MyDialog extends Dialog {
 
   @override
   Widget build(BuildContext context) {
+    _showDialog(context);
     return Material(
       //设置背景透明
       type: MaterialType.transparency,
