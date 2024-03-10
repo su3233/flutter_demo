@@ -77,6 +77,7 @@ class _ListPage extends State<ListPage> {
       ),
       appBar: AppBar(
         title: const Text("AppBar组件"),
+        backgroundColor: Colors.yellow,
       ),
       body: AnimatedList(
           key: globalKey,
