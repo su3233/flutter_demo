@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/data/listData.dart';
 import 'package:flutter_demo/routers/routers.dart';
 import 'pages/usersPages.dart';
 import 'utils/KeepAliveWrapper.dart';
@@ -20,14 +21,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       //去掉debug图标
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          appBarTheme: const AppBarTheme(
-              centerTitle: true
-          )
-      ),
+      theme: ThemeData(appBarTheme: const AppBarTheme(centerTitle: true)),
       title: "BottomNavigationBar",
       routes: routes,
-      initialRoute: "/",
+      initialRoute: "/",//如果已经定义home了，路由中就不能有/的路由
       onGenerateRoute: onGenerateRoute,
       // theme: ThemeData(primarySwatch: Colors.blue),
       home: Builder(builder: (BuildContext context) {
@@ -130,48 +127,85 @@ class _TabsState extends State<Tabs> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       drawer: Drawer(
           child: Column(
-            children: <Widget>[
-              UserAccountsDrawerHeader(
-                accountName: const Text("大地老师"),
-                accountEmail: const Text("dadi@itying.com"),
-                currentAccountPicture: const CircleAvatar(
-                  backgroundImage:
+        children: <Widget>[
+          UserAccountsDrawerHeader(
+            accountName: const Text("大地老师"),
+            accountEmail: const Text("dadi@itying.com"),
+            currentAccountPicture: const CircleAvatar(
+              backgroundImage:
                   NetworkImage("https://www.itying.com/images/flutter/3.png"),
-                ),
-                decoration: const BoxDecoration(
-                    color: Colors.yellow,
-                    image: DecorationImage(
-                        image: NetworkImage(
-                            "https://www.itying.com/images/flutter/2.png"),
-                        fit: BoxFit.cover)),
-                otherAccountsPictures: <Widget>[
-                  Image.network("https://www.itying.com/images/flutter/4.png"),
-                  Image.network("https://www.itying.com/images/flutter/5.png"),
-                  Image.network("https://www.itying.com/images/flutter/6.png")
-                ],
-              ),
-              const ListTile(
-                title: Text("个人中心"),
-                leading: CircleAvatar(child: Icon(Icons.people)),
-              ),
-              const Divider(),
-              const ListTile(
-                title: Text("系统设置"),
-                leading: CircleAvatar(child: Icon(Icons.settings)),
-              )
+            ),
+            decoration: const BoxDecoration(
+                color: Colors.yellow,
+                image: DecorationImage(
+                    image: NetworkImage(
+                        "https://www.itying.com/images/flutter/2.png"),
+                    fit: BoxFit.cover)),
+            otherAccountsPictures: <Widget>[
+              Image.network("https://www.itying.com/images/flutter/4.png"),
+              Image.network("https://www.itying.com/images/flutter/5.png"),
+              Image.network("https://www.itying.com/images/flutter/6.png")
             ],
-          )),
+          ),
+          const ListTile(
+            title: Text("个人中心"),
+            leading: CircleAvatar(child: Icon(Icons.people)),
+          ),
+          const Divider(),
+          const ListTile(
+            title: Text("系统设置"),
+            leading: CircleAvatar(child: Icon(Icons.settings)),
+          )
+        ],
+      )),
     );
   }
 }
 
-class SettingPage extends StatelessWidget {
+class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
 
   @override
+  State<StatefulWidget> createState() {
+    return _SettingPage();
+  }
+}
+
+class _SettingPage extends State<SettingPage> {
+  List<Widget> _initData() {
+    var tempList = listData.map((value) {
+      return GestureDetector(
+        onTap: () {
+          print("......${value["image_url"]}");
+          Navigator.pushNamed(context, "/hero",
+              arguments: {"image_url": "${value["image_url"]}"});
+        },
+        child: Container(
+          decoration: BoxDecoration(
+              border: Border.all(
+                  color: const Color.fromARGB(233, 233, 233, 233), width: 1)),
+          child: Column(
+            children: [
+              Hero(
+                  tag: "${value["image_url"]}",
+                  child: Image.network("${value["image_url"]}")),
+              Text(value["title"])
+            ],
+          ),
+        ),
+      );
+    });
+    return tempList.toList();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("SettingPage"),
+    return GridView.count(
+      crossAxisSpacing: 10.0,
+      mainAxisSpacing: 10.0,
+      crossAxisCount: 2,
+      padding: const EdgeInsets.all(5),
+      children: _initData(),
     );
   }
 }
@@ -266,7 +300,7 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
         appBar: PreferredSize(
 
-          ///也可以在appBar的title中直接写tabBar，tabBar使用Conrainer包裹设置高度
+            ///也可以在appBar的title中直接写tabBar，tabBar使用Conrainer包裹设置高度
             preferredSize: const Size.fromHeight(50),
             child: AppBar(
               // backgroundColor: const Color.fromARGB(255, 253, 247, 247),
@@ -296,7 +330,6 @@ class _HomePageState extends State<HomePage>
               ),
             )),
         body: TabBarView(controller: _tabController, children: [
-
           ///KeepAliveWrapper保存滑动的状态
           KeepAliveWrapper(
             child: ListView(
@@ -336,12 +369,12 @@ class _HomePageState extends State<HomePage>
           ),
           KeepAliveWrapper(
               child: ListView(
-                children: const [
-                  ListTile(
-                    title: Text("推荐list"),
-                  )
-                ],
-              )),
+            children: const [
+              ListTile(
+                title: Text("推荐list"),
+              )
+            ],
+          )),
           KeepAliveWrapper(
             child: ListView(
               children: const [
