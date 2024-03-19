@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 ///显示动画，可手动控制，(透明度，缩放，位移)
 ///SlideTransition+Tween+Offset 位移动画
+///AnimatedIcon 图标动画
 main() {
   runApp(MaterialApp(
     title: "flutter 显示动画",
