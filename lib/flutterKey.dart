@@ -63,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       appBar: AppBar(
         title: const Text('Title'),
+        backgroundColor: Colors.yellow,
       ),
       body: Center(
         child: Column(
@@ -75,9 +76,9 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class Box extends StatefulWidget {
-  Color color;
+  final Color color;
 
-  Box({super.key, required this.color});
+  const Box({super.key, required this.color});
 
   @override
   State<Box> createState() => _BoxState();

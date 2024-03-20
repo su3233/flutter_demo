@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/data/listData.dart';
 import 'package:flutter_demo/routers/routers.dart';
+
+import 'data/pageButtons.dart';
 import 'pages/usersPages.dart';
 import 'utils/KeepAliveWrapper.dart';
 // import 'package:flutter/cupertino.dart';
@@ -230,7 +232,8 @@ class CategoryPage extends StatefulWidget {
   final String title;
   final String id;
 
-  const CategoryPage({super.key, this.title = "Search Page", required this.id});
+  const CategoryPage(
+      {super.key, this.title = "CategoryPage", required this.id});
 
   @override
   State<CategoryPage> createState() => _CategoryPage();
@@ -256,8 +259,11 @@ class _CategoryPage extends State<CategoryPage> {
         title: Text(widget.title),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text("组件居中"),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+        child: Wrap(
+          children: getPageButtons(context),
+        ),
       ),
     );
   }

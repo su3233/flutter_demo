@@ -25,6 +25,7 @@ class _FormPage extends State<FormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.yellow,
         title: const Text("表单页面"),
       ),
       body: const Center(

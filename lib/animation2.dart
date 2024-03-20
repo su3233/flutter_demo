@@ -48,6 +48,7 @@ class _HomePage extends State<HomePage> with SingleTickerProviderStateMixin {
         },
       ),
       appBar: AppBar(
+        backgroundColor: Colors.yellow,
         title: const Text("data"),
       ),
       body: Center(

@@ -15,6 +15,7 @@ class _NewsPage extends State<NewsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.yellow,
         title: Text("新闻页面"),
       ),
       body: const Center(

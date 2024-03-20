@@ -50,6 +50,7 @@ class _HomePageState extends State<MyHomePage> {
         },
       ),
       appBar: AppBar(
+        backgroundColor: Colors.yellow,
         title: const Text('Title'),
       ),
       body: Center(

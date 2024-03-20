@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -8,61 +7,76 @@ import 'button.dart';
 void main() => runApp(
       MaterialApp(
         builder: FToastBuilder(),
-        home: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            // alignment: WrapAlignment.center,
-            children: [
-              MyButton(
-                "第一集",
-                onPressed: () {},
-              ),
-              MyButton(
-                "第2集",
-                onPressed: () {},
-              ),
-              MyButton(
-                "第3集",
-                onPressed: () {},
-              ),
-              MyButton(
-                "第4集",
-                onPressed: () {},
-              ),
-              MyButton(
-                "第5集",
-                onPressed: () {},
-              ),
-              MyButton(
-                "第6集",
-                onPressed: () {},
-              ),
-              MyButton(
-                "第8集",
-                onPressed: () {},
-              ),
-              MyButton(
-                "第7集",
-                onPressed: () {},
-              ),
-              MyButton(
-                "第9集",
-                onPressed: () {},
-              ),
-            ],
-          ),
+        home: const Padding(
+          padding: EdgeInsets.all(10),
+          child: WrapPage(),
         ),
         navigatorKey: navigatorKey,
       ),
     );
 
-class MyButton extends StatelessWidget {
-  String text;
-  void Function()? onPressed;
+class WrapPage extends StatelessWidget {
+  const WrapPage({super.key});
 
-  MyButton(this.text, {super.key, required this.onPressed});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.yellow,
+        title: const Text("wrap"),
+      ),
+      body: Wrap(
+        spacing: 10,
+        runSpacing: 10,
+        // alignment: WrapAlignment.center,
+        children: [
+          MyButton(
+            "第一集",
+            onPressed: () {},
+          ),
+          MyButton(
+            "第2集",
+            onPressed: () {},
+          ),
+          MyButton(
+            "第3集",
+            onPressed: () {},
+          ),
+          MyButton(
+            "第4集",
+            onPressed: () {},
+          ),
+          MyButton(
+            "第5集",
+            onPressed: () {},
+          ),
+          MyButton(
+            "第6集",
+            onPressed: () {},
+          ),
+          MyButton(
+            "第8集",
+            onPressed: () {},
+          ),
+          MyButton(
+            "第7集",
+            onPressed: () {},
+          ),
+          MyButton(
+            "第9集",
+            onPressed: () {},
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MyButton extends StatelessWidget {
+  final String text;
+  final void Function()? onPressed;
+
+  const MyButton(this.text, {super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

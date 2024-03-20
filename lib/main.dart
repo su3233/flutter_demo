@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'app/widget/myFonts.dart';
 
 void main() {
@@ -12,10 +13,23 @@ void main() {
         title: const Text(
           "你好flutter",
           textAlign: TextAlign.center,
-
         ),
         backgroundColor: Colors.yellow,
+      ),
+      body: const WidgetPage(),
+    ),
+  ));
+}
 
+class WidgetPage extends StatelessWidget {
+  const WidgetPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.yellow,
+        title: const Text("widget"),
       ),
       body: Column(
         children: [
@@ -32,8 +46,8 @@ void main() {
           MyIcon()
         ],
       ),
-    ),
-  ));
+    );
+  }
 }
 
 class MyIcon extends StatelessWidget {

@@ -9,15 +9,25 @@ main() {
   runApp(MaterialApp(
     title: "flutter viewPage",
     theme: ThemeData(primarySwatch: Colors.yellow),
-    home: Scaffold(
+    home: const PageViewPage(),
+  ));
+}
+
+class PageViewPage extends StatelessWidget{
+  const PageViewPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       appBar: AppBar(
         title: const Text("flutter viewPage"),
         backgroundColor: Colors.yellow,
       ),
       // body: const ViewPage(),
       body: const MyPage(),
-    ),
-  ));
+    );
+  }
+
 }
 
 // class ViewPage extends StatefulWidget {
@@ -77,6 +87,7 @@ class _MyPageState extends State<MyPage> {
         url: listData[i]["imageUrl"],
       ));
     }
+    super.initState();
   }
 
   @override
