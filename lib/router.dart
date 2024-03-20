@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/data/listData.dart';
 import 'package:flutter_demo/routers/routers.dart';
 import 'package:flutter_demo/utils/commonUtils.dart';
 import 'pages/news.dart';
@@ -40,6 +41,12 @@ class RouterPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(context, "/form",
                           arguments: {"title": "我是命名路由传值", "id": 123});
+                    },
+                    child: const Text("普通路由命名路由传值跳转到form")),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/hero",
+                          arguments: {"image_url":  listData[0]["image_url"]});
                     },
                     child: const Text("普通路由命名路由传值跳转到form")),
               ],

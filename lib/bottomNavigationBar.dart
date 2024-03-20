@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(appBarTheme: const AppBarTheme(centerTitle: true)),
       title: "BottomNavigationBar",
-      routes: routes,
-      initialRoute: "/",//如果已经定义home了，路由中就不能有/的路由
+      // routes: routes,//配置路由和配置home是两种方式，不配置routes也可以使用路由
+      // initialRoute: "/",//如果已经定义home了，路由中就不能有/的路由
       onGenerateRoute: onGenerateRoute,
       // theme: ThemeData(primarySwatch: Colors.blue),
       home: Builder(builder: (BuildContext context) {
@@ -178,7 +178,7 @@ class _SettingPage extends State<SettingPage> {
         onTap: () {
           print("......${value["image_url"]}");
           Navigator.pushNamed(context, "/hero",
-              arguments: {"image_url": "${value["image_url"]}"});
+              arguments: {"image_url": value["image_url"]});
         },
         child: Container(
           decoration: BoxDecoration(
