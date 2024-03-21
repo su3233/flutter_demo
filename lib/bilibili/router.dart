@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/data/listData.dart';
 import 'package:flutter_demo/routers/routers.dart';
 import 'package:flutter_demo/utils/commonUtils.dart';
-import 'pages/news.dart';
-import 'pages/form.dart';
+import '../pages/news.dart';
+import '../pages/form.dart';
 
 ///路由包括普通路由和命名路由,
 ///要是路由根空间不能是MaterialApp，可以使用Builder传值

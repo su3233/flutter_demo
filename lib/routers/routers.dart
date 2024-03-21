@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
 
-import '../animatedList.dart';
-import '../animatio_hero.dart';
-import '../animation.dart';
+import '../bilibili/animatedList.dart';
+import '../bilibili/animatio_hero.dart';
+import '../bilibili/animation.dart';
+import '../bilibili/getx.dart';
+import '../bilibili/main.dart';
+import '../bilibili/wrap.dart';
 import '../pages/form.dart';
 import '../pages/news.dart';
 import '../pages/usersPages.dart';
-import '../router.dart';
-import 'package:flutter_demo/animation2.dart' as xianShi;
-import 'package:flutter_demo/animation3.dart' as jiaoCuo;
-import 'package:flutter_demo/appbar.dart' as appBar;
-import 'package:flutter_demo/aspectRatio.dart' as aspectRatio;
-import 'package:flutter_demo/button.dart' as myButton;
-import 'package:flutter_demo/dialog.dart' as myDialog;
-import 'package:flutter_demo/flutterKey.dart' as key;
-import 'package:flutter_demo/flutterKeyGlobal.dart' as globalKey;
-import 'package:flutter_demo/flutterKeyGlobalGetChildState.dart' as keyChild;
-import 'package:flutter_demo/grideView.dart' as gridView;
-import 'package:flutter_demo/layout.dart' as layout;
-import 'package:flutter_demo/list.dart' as listPage;
-import 'package:flutter_demo/main.dart';
-import 'package:flutter_demo/pageView.dart';
-import 'package:flutter_demo/router2.dart' as router2;
-import 'package:flutter_demo/stack.dart' as stack;
-import 'package:flutter_demo/wrap.dart' ;
-import 'package:flutter_demo/stateful.dart' as stateful;
+import '../bilibili/router.dart';
+import 'package:flutter_demo/bilibili/animation2.dart' as xianShi;
+import 'package:flutter_demo/bilibili/animation3.dart' as jiaoCuo;
+import 'package:flutter_demo/bilibili/aspectRatio.dart' as aspectRatio;
+import 'package:flutter_demo/bilibili/button.dart' as myButton;
+import 'package:flutter_demo/bilibili/flutterKey.dart' as key;
+import 'package:flutter_demo/bilibili/flutterKeyGlobal.dart' as globalKey;
+import 'package:flutter_demo/bilibili/grideView.dart' as gridView;
+import 'package:flutter_demo/bilibili/layout.dart' as layout;
+import 'package:flutter_demo/bilibili/pageView.dart';
+import 'package:flutter_demo/bilibili/router2.dart' as router2;
+import 'package:flutter_demo/bilibili/stateful.dart' as stateful;
+import '../bilibili/appbar.dart' as appBar;
+import '../bilibili/dialog.dart' as myDialog;
+import '../bilibili/flutterKeyGlobalGetChildState.dart' as keyChild;
+import '../bilibili/list.dart' as listPage;
+import '../bilibili/stack.dart' as stack;
 
 final Map<String, WidgetBuilder> routes = {
   // '/': (context) => const CategoryPage(id: "3"),
@@ -61,6 +62,7 @@ final Map<String, WidgetBuilder> routes = {
   '/stack': (context) => const stack.MyApp(),
   '/statefulWidget': (context) => const stateful.MyApp(),
   '/wrapPage': (context) => const WrapPage(),
+  '/getxPage': (context) => GetxPage(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

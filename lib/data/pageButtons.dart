@@ -120,5 +120,10 @@ import 'package:flutter/material.dart';
            Navigator.pushNamed(context, "/wrapPage");
          },
          child: const Text("wrapPage")),
+     ElevatedButton(
+         onPressed: () {
+           Navigator.pushNamed(context, "/getxPage");
+         },
+         child: const Text("getxPage")),
    ];
  }

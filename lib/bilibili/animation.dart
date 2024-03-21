@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'data/constants.dart';
+import '../data/constants.dart';
 
 ///动画：隐式动画（在控件外部加Animationxx动画）AnimatedContainer,AnimatedPadding，Opacity,AnimatedPosition(购物车)
 ///AnimatedSwitcher(子元素改变时动画)
