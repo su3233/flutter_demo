@@ -6,6 +6,7 @@ import '../bilibili/animation.dart';
 import '../bilibili/get/getx.dart';
 import '../bilibili/main.dart';
 import '../bilibili/wrap.dart';
+import '../bottomNavigationBar.dart';
 import '../pages/form.dart';
 import '../pages/news.dart';
 import '../pages/usersPages.dart';
@@ -28,7 +29,7 @@ import '../bilibili/list.dart' as listPage;
 import '../bilibili/stack.dart' as stack;
 
 final Map<String, WidgetBuilder> routes = {
-  // '/': (context) => const CategoryPage(id: "3"),
+  '/': (context) => const CategoryPage(id: "3"),
   '/search': (context) => const SearchPage(),
 
   ///命名路由传值

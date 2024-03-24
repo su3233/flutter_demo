@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'getPages/shop.dart';
+import 'getRouters.dart';
 
 ///get对话框，主题，snackBar，
-void main() => runApp(const GetMaterialApp(home: GetxPage()));
+void main() => runApp(GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      // routes: getRouters, //配置路由和配置home是两种方式，不配置routes也可以使用路由
+      // initialRoute: "/", //如果已经定义home了，路由中就不能有/的路由
+      onGenerateRoute: onGenerateRoute,
+      // getPages: [
+      //   GetPage(name: "/", page: () => const ShopPage())
+      // ], //使用onGenerateRoute+routes 或者使用getPages+initialRoute 二选一
+      // home: GetxPage()
+    ));
 
 class GetxPage extends StatefulWidget {
   const GetxPage({super.key});
@@ -28,6 +39,11 @@ class _GetxPage extends State<GetxPage> {
                 child: Obx(() => Text("$count")),
               ),
               ElevatedButton(onPressed: () {}, child: const Text("计数器")),
+              ElevatedButton(
+                  onPressed: () {
+                    Get.toNamed("/shopPage");
+                  },
+                  child: const Text("路由跳转")),
               ElevatedButton(
                   onPressed: () {
                     _showBottomSheet();
