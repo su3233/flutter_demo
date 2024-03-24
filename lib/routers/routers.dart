@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../bilibili/animatedList.dart';
 import '../bilibili/animatio_hero.dart';
 import '../bilibili/animation.dart';
-import '../bilibili/getx.dart';
+import '../bilibili/get/getx.dart';
 import '../bilibili/main.dart';
 import '../bilibili/wrap.dart';
 import '../pages/form.dart';
