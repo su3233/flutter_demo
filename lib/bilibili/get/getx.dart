@@ -1,18 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../pages/news.dart';
+import 'getPages/createOrder.dart';
+import 'getPages/realPay.dart';
 import 'getPages/shop.dart';
 import 'getRouters.dart';
+import '../../bilibili/get/middleware/shopMiddleWare.dart';
 
 ///get对话框，主题，snackBar，
 void main() => runApp(GetMaterialApp(
       debugShowCheckedModeBanner: false,
       // routes: getRouters, //配置路由和配置home是两种方式，不配置routes也可以使用路由
-      // initialRoute: "/", //如果已经定义home了，路由中就不能有/的路由
-      onGenerateRoute: onGenerateRoute,
-      // getPages: [
-      //   GetPage(name: "/", page: () => const ShopPage())
-      // ], //使用onGenerateRoute+routes 或者使用getPages+initialRoute 二选一
-      // home: GetxPage()
+      // onGenerateRoute: onGenerateRoute,
+      // ///如果已经定义home了，路由中就不能有/的路由
+      // initialRoute: "/",
+      ///使用onGenerateRoute+routes 或者使用getPages+initialRoute 二选一
+      defaultTransition: Transition.rightToLeft,
+      getPages: [
+        GetPage(name: "/", page: () => const GetxPage()),
+        GetPage(name: "/news", page: () => const NewsPage()),
+        GetPage(
+            name: "/shopPage",
+            page: () => const ShopPage(),
+            middlewares: [ShopMiddleWare()],
+            transition: Transition.fade),
+        GetPage(name: "/createOrder", page: () => const CreateOrderPage()),
+        GetPage(name: "/realPay", page: () => const RealPayPage()),
+      ],
+      // home: const GetxPage()
     ));
 
 class GetxPage extends StatefulWidget {

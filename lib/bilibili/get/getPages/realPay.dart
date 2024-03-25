@@ -5,9 +5,12 @@ import 'package:get/get.dart';
 import '../getx.dart';
 
 class RealPayPage extends StatefulWidget {
-  final Map arguments;
+  // final Map arguments;
 
-  const RealPayPage({super.key, required this.arguments});
+  // const RealPayPage({super.key, required this.arguments});
+
+  ///通过get进行路由跳转传值，不需要构造函数的参数，直接Get.arguments
+  const RealPayPage({super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -18,7 +21,8 @@ class RealPayPage extends StatefulWidget {
 class _RealPayPage extends State<RealPayPage> {
   @override
   void initState() {
-    print(widget.arguments);
+    // print(widget.arguments);
+    print(Get.arguments);
     super.initState();
   }
 
@@ -31,7 +35,8 @@ class _RealPayPage extends State<RealPayPage> {
       ),
       body: Column(
         children: [
-          Text("${widget.arguments["count"]}"),
+          // Text("${widget.arguments["count"]}"),
+          Text("${Get.arguments["count"]}"),
           ElevatedButton(
               onPressed: () {
                 Get.offAll(const GetxPage());

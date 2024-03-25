@@ -11,9 +11,9 @@ final Map<String, WidgetBuilder> getRouters = {
   '/news': (context) => const NewsPage(),
   '/shopPage': (context) => const ShopPage(),
   '/createOrder': (context) => const CreateOrderPage(),
-  '/realPay': (context, {arguments}) => RealPayPage(
-        arguments: arguments,
-      ),
+  // '/realPay': (context, {arguments}) => RealPayPage(
+  //       arguments: arguments,
+  //     ),
 };
 
 var onGenerateRoute = (RouteSettings settings) {
