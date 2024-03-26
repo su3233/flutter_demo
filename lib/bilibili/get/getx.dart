@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/prictice/_8_abstract.dart';
 import 'package:get/get.dart';
 import '../../pages/news.dart';
 import 'getPages/createOrder.dart';
@@ -38,7 +39,11 @@ class GetxPage extends StatefulWidget {
 }
 
 class _GetxPage extends State<GetxPage> {
-  var count = 0.obs;
+  RxInt count = 0.obs;
+  final RxInt _num = RxInt(0);
+
+  ///类的obs
+  final _person = Person(2, "xiao mao").obs;
 
   @override
   Widget build(context) => Scaffold(
@@ -51,9 +56,10 @@ class _GetxPage extends State<GetxPage> {
           child: Wrap(
             children: [
               Center(
-                child: Obx(() => Text("$count")),
+                child: Obx(() => Text("$count....${_person.value.name}")),
               ),
               ElevatedButton(onPressed: () {}, child: const Text("计数器")),
+              ElevatedButton(onPressed: () {}, child: const Text("状态管理")),
               ElevatedButton(
                   onPressed: () {
                     Get.toNamed("/shopPage");
@@ -90,9 +96,15 @@ class _GetxPage extends State<GetxPage> {
             ],
           )),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () => count++,
-      ));
+          child: const Icon(Icons.add),
+          onPressed: () {
+            count++;
+            _person.value.name = "xiao tu zi";
+            _person.value = _person.value;
+
+            ///两种方式
+            // _person.value =Person(3, "xiao tu zi");
+          }));
 
   void _showBottomSheet() {
     Get.bottomSheet(Container(
