@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/prictice/_8_abstract.dart';
 import 'package:get/get.dart';
 import '../../pages/news.dart';
+import 'getPages/counterGetx.dart';
 import 'getPages/createOrder.dart';
 import 'getPages/realPay.dart';
 import 'getPages/shop.dart';
 import 'getRouters.dart';
 import '../../bilibili/get/middleware/shopMiddleWare.dart';
+import '../../bilibili/get/controller/counter.dart';
+import 'bindings/binding.dart';
 
 ///get对话框，主题，snackBar，
 void main() => runApp(GetMaterialApp(
@@ -17,6 +20,7 @@ void main() => runApp(GetMaterialApp(
       // initialRoute: "/",
       ///使用onGenerateRoute+routes 或者使用getPages+initialRoute 二选一
       defaultTransition: Transition.rightToLeft,
+      initialBinding: AllControllerBinding(), //全局绑定bindingControoler
       getPages: [
         GetPage(name: "/", page: () => const GetxPage()),
         GetPage(name: "/news", page: () => const NewsPage()),
@@ -27,6 +31,7 @@ void main() => runApp(GetMaterialApp(
             transition: Transition.fade),
         GetPage(name: "/createOrder", page: () => const CreateOrderPage()),
         GetPage(name: "/realPay", page: () => const RealPayPage()),
+        GetPage(name: "/counter", page: () => const CounterGetx()),
       ],
       // home: const GetxPage()
     ));
@@ -45,6 +50,12 @@ class _GetxPage extends State<GetxPage> {
   ///类的obs
   final _person = Person(2, "xiao mao").obs;
 
+  ///数据共享
+  CounterController counterController = Get.put(CounterController());
+
+  //使用binding,就不需要put初始化，可以直接使用
+  CounterController controller = Get.find();
+
   @override
   Widget build(context) => Scaffold(
       appBar: AppBar(
@@ -56,10 +67,16 @@ class _GetxPage extends State<GetxPage> {
           child: Wrap(
             children: [
               Center(
-                child: Obx(() => Text("$count....${_person.value.name}")),
+                child: Obx(() => Text(
+                    "$count....${_person.value.name}...controllerCounter:${counterController.counter}"
+                    "..binding${controller.counter}")),
               ),
               ElevatedButton(onPressed: () {}, child: const Text("计数器")),
-              ElevatedButton(onPressed: () {}, child: const Text("状态管理")),
+              ElevatedButton(
+                  onPressed: () {
+                    Get.toNamed("/counter");
+                  },
+                  child: const Text("状态管理")),
               ElevatedButton(
                   onPressed: () {
                     Get.toNamed("/shopPage");
@@ -101,6 +118,9 @@ class _GetxPage extends State<GetxPage> {
             count++;
             _person.value.name = "xiao tu zi";
             _person.value = _person.value;
+
+            ///数据共享getxController
+            counterController.inc();
 
             ///两种方式
             // _person.value =Person(3, "xiao tu zi");
