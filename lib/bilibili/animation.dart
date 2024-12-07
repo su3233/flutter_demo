@@ -62,6 +62,7 @@ class _AnimationPage extends State<AnimationPage> {
               color: Colors.red,
             ),
           ),
+          //文字大小动画
           Container(
             width: double.infinity,
             height: 50,

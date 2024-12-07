@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -7,7 +9,10 @@ class ShopMiddleWare extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     print("----$route");
-    // return null;//不做任何操作
-    return const RouteSettings(name: "/news", arguments: {}); //拦截路由。可判断是否登陆
+    if (Random().nextBool()  == true) {
+      return null;//不做任何操作
+    } else {
+      return const RouteSettings(name: "/news", arguments: {}); //拦截路由。可判断是否登陆
+    }
   }
 }
